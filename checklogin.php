@@ -1,7 +1,7 @@
 <?php
 
 mysql_connect("localhost","root","1234") or die (mysql_error());
-mysql_select_db("advanse_mc01") or die (mysql_error());
+mysql_select_db("advanse_mc02") or die (mysql_error());
 $tbl_name = "users";
 
 // username and password sent from form
