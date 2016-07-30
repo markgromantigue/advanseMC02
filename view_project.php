@@ -106,7 +106,7 @@
 					echo '<tr bgcolor="grey" style="font-weight:bold"><td colspan="5" width="30%">Templates</td></tr>';
                     echo"<tr>";
                     echo"<td>";
-                    echo "<a href='time_recording_log.php?user_id=$userId&project_id=$projectId'>Time Recording Log</a>";
+                    echo "<a href='test_report.php?user_id=$userId&project_id=$projectId'>Test Report</a>";
                     echo "</td>";
 					echo"</tr>";
                     echo"<tr>";
