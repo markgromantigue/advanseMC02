@@ -2,9 +2,9 @@
 //email:markg.romantigue@gmail.com
 //version 1.0
 
-var i=7;
+var i=3;
 function addRow(){
-    $('#myTable tr.addMore').before("<tr style='height: 35px;'><td style='width: 284px; height: 35px;'><input type='text' name='BA[]' id='base" + i + "' style='width: 280px;' data-validation='required' data-validation-depends-on='total" + i + "'></td><td style='width: 31px; height: 35px;'><p>&nbsp;</p></td><td style='width: 139px; height: 35px;'><center><select name='type[]' id='x" + i + "'  data-validation='required' data-validation-depends-on='base" + i + "'><option value='' disabled selected>Select type</option><option value='logic'>Logic</option><option value='io'>Input/Output</option><option value='calculation'>Calculation</option><option value='text'>Text</option><option value='data'>Data</option><option value='setup'>Set-Up</option></select></center></td><td style='width: 31px; height: 35px;'><p><strong>&nbsp;</strong></p></td><td style='width: 139px; height: 35px;'><input type='text' name='methods[]' id='item" + i + "'></td><td style='width: 31px; height: 35px;'><p><strong>&nbsp;</strong></p></td><td style='width: 171px; height: 35px;'><center><select name='size[]' id='y" + i + "' data-validation='required' data-validation-depends-on='x" + i + "'><option value='' disabled selected>Select Size</option><option value='verysmall'>Very Small</option><option value='small'>Small</option><option value='medium'>Medium</option><option value='large'>Large</option><option value='verylarge'>Very Large</option></select></center></td><td style='width: 10px; height: 35px;'><p><strong>&nbsp;</strong></p></td><td style='idth: 156px; height: 35px;'><input type='text' name='loc[]' class='toAdd' id='total" + i + "'  data-validation='required' data-validation-depends-on='y" + i + "'></td></tr>");
+    $('#myTable tr.addMore').before("<tr>                         <td width='87'>                             <p style='text-align: center;'>" + i + "</p>                         </td>                         <td width='87'>                             <select name='phase[]' id='phase" + i + "' data-validation='required' data-validation-depends-on='caev" + i + "'>                                 <option value='' disabled selected>Select</option>                                 <option value='Planning'>Planning</option>                                 <option value='Design'>Design</option>                                 <option value='Code'>Code</option>                                 <option value='Compile'>Compile</option>                                 <option value='Test'>Test</option>                                 <option value='Postmortem'>Postmortem</option>                             </select>                         </td>                         <td width='87'>                             <input type='text' size='8' name='hours[]' id='hours" + i + "' class='toAdd' data-validation='number' data-validation-allowing='float' data-validation-depends-on='phase" + i + "'>                         </td>                         <td width='87'>                             <input type='text' size='8' name='pv[]' id='pv" + i + "' data-validation='number' data-validation-allowing='float' data-validation-depends-on='hours" + i + "'>                         </td>                         <td width='87'>                             <input type='text' size='8' name='taskch[]' id='taskch" + i + "' data-validation='number' data-validation-allowing='float' data-validation-depends-on='pv" + i + "'>                         </td>                         <td width='87'>                             <input type='text' size='9' name='taskcpv[]' id='taskcpv" + i + "' data-validation='number' data-validation-allowing='float' data-validation-depends-on='taskch" + i + "'>                         </td>                         <td width='87'>                             <input type='date' step=7 min=" + i + "014-09-08 name='taskDateMonday[]' name='taskDateMonday[]' id='taskDateMonday" + i + "' data-validation='required' data-validation-depends-on='taskcpv" + i + "'>                         </td>                         <td width='87'>                             <input type='date' name='taskDate[]' id='taskDate" + i + "' disabled>                         </td>                         <td width='87'>                             <input type='text' size='8' name='ev[]' id='ev" + i + "' disabled>                         </td>                         <td width='87'>                             <input type='text' size='8' name='taskcev[]' id='taskcev" + i + "' disabled>                         </td>                         <td width='87'>                             <input type='text' size='8' name='actualev[]' id='actualev" + i + "' disabled>                         </td>                         <td width='87'>                             <input type='text' size='8' name='caev[]' id='caev" + i + "' disabled>                         </td>                     </tr>");
     i++;
 }
 function addObjectRow(){
@@ -21,7 +21,7 @@ $(document).on('click','.toAdd',function() {
                     result += parseFloat($(this).val());
                 }
             });
-            return result;
+            return result.toFixed(2);
         });
         $('#P').attr('value', function() {
             $('#totalBA, #totalNO').each(function() {
@@ -32,29 +32,6 @@ $(document).on('click','.toAdd',function() {
             return P;
         });
         $('#totalR').attr('value', 0);
-        $('#P').trigger('keyup');
-    });
-});
-$(document).on('click','.toAdd2',function() {
-    $('.toAdd2').keyup(function() {
-        var result = 0;
-        var P = 0;
-        $('#totalNO').attr('value', function() {
-            $('.toAdd2').each(function() {
-                if ($(this).val() !== '') {
-                    result += parseFloat($(this).val());
-                }
-            });
-            return result;
-        });
-        $('#P').attr('value', function() {
-            $('#totalNO, #totalBA').each(function() {
-                if ($(this).val() !== '') {
-                    P += parseFloat($(this).val());
-                }
-            });
-            return P;
-        });
         $('#P').trigger('keyup');
     });
 });
@@ -96,89 +73,67 @@ $( document ).ready(function() {
     });
 });
 $( document ).ready(function() {
-    $(document).on('change', '[id^=x],[id^=y]', function(){
+    $(document).on('change', '[id^="pv"]', function(){
         var result = 0;
-        if($(this).is(':contains("x")')){
-            var num = this.id.split('x')[1];
-        }else if($(this).is(':contains("y")')){
-            var num = this.id.split('y')[1];
-        }
-        $('#total' + num).val(function() {
-            var items = $('#item'  + num).val();
-            if(items == 0){
-                items=1;
-            }
-            if ($('#x' + num).val() == "logic" && $('#y' + num).val() == "verysmall") {
-                result = 7.55 * items;
-            }else if ($('#x' + num).val() == "logic" && $('#y' + num).val() == "small") {
-                result = 10.98 * items;
-            }else if ($('#x' + num).val() == "logic" && $('#y' + num).val() == "medium") {
-                result = 15.98 * items;
-            }else if ($('#x' + num).val() == "logic" && $('#y' + num).val() == "large") {
-                result = 23.25 * items;
-            }else if ($('#x' + num).val() == "logic" && $('#y' + num).val() == "verylarge") {
-                result = 33.83 * items;
-            }else if ($('#x' + num).val() == "io" && $('#y' + num).val() == "verysmall") {
-                result = 9.01 * items;
-            }else if ($('#x' + num).val() == "io" && $('#y' + num).val() == "small") {
-                result = 12.06 * items;
-            }else if ($('#x' + num).val() == "io" && $('#y' + num).val() == "medium") {
-                result = 16.15 * items;
-            }else if ($('#x' + num).val() == "io" && $('#y' + num).val() == "large") {
-                result = 21.62 * items;
-            }else if ($('#x' + num).val() == "io" && $('#y' + num).val() == "verylarge") {
-                result = 28.93 * items;
-            }else if ($('#x' + num).val() == "calculation" && $('#y' + num).val() == "verysmall") {
-                result = 2.34 * items;
-            }else if ($('#x' + num).val() == "calculation" && $('#y' + num).val() == "small") {
-                result = 5.13 * items;
-            }else if ($('#x' + num).val() == "calculation" && $('#y' + num).val() == "medium") {
-                result = 11.25 * items;
-            }else if ($('#x' + num).val() == "calculation" && $('#y' + num).val() == "large") {
-                result = 24.66 * items;
-            }else if ($('#x' + num).val() == "calculation" && $('#y' + num).val() == "verylarge") {
-                result = 54.04 * items;
-            }else if ($('#x' + num).val() == "text" && $('#y' + num).val() == "verysmall") {
-                result = 3.75 * items;
-            }else if ($('#x' + num).val() == "text" && $('#y' + num).val() == "small") {
-                result = 8.00 * items;
-            }else if ($('#x' + num).val() == "text" && $('#y' + num).val() == "medium") {
-                result = 17.07 * items;
-            }else if ($('#x' + num).val() == "text" && $('#y' + num).val() == "large") {
-                result = 36.41 * items;
-            }else if ($('#x' + num).val() == "text" && $('#y' + num).val() == "verylarge") {
-                result = 77.66 * items;
-            }else if ($('#x' + num).val() == "data" && $('#y' + num).val() == "verysmall") {
-                result = 2.60 * items;
-            }else if ($('#x' + num).val() == "data" && $('#y' + num).val() == "small") {
-                result = 4.79 * items;
-            }else if ($('#x' + num).val() == "data" && $('#y' + num).val() == "medium") {
-                result = 8.84 * items;
-            }else if ($('#x' + num).val() == "data" && $('#y' + num).val() == "large") {
-                result = 16.31 * items;
-            }else if ($('#x' + num).val() == "data" && $('#y' + num).val() == "verylarge") {
-                result = 30.09 * items;
-            }else if ($('#x' + num).val() == "setup" && $('#y' + num).val() == "verysmall") {
-                result = 3.88 * items;
-            }else if ($('#x' + num).val() == "setup" && $('#y' + num).val() == "small") {
-                result = 5.04 * items;
-            }else if ($('#x' + num).val() == "setup" && $('#y' + num).val() == "medium") {
-                result = 6.56 * items;
-            }else if ($('#x' + num).val() == "setup" && $('#y' + num).val() == "large") {
-                result = 8.53 * items;
-            }else if ($('#x' + num).val() == "setup" && $('#y' + num).val() == "verylarge") {
-                result = 11.09 * items;
-            }
+        var result2 = 0;
+        var num = this.id.split('pv')[1];
+
+        $('#pv' + num).val(function() {
+            var items = $('#hours'  + num).val();
+            //if(items == 0){
+            //    items=1;
+            //}
+            result = items / $('#totalBA').val();
         return result.toFixed(2);
         });
-        $('.toAdd, .toAdd2').trigger('click');
-        $('.toAdd, .toAdd2').trigger('keyup');
+        if(num == 1){
+            $('#taskch' + num).val(function() {
+                var items2 = $('#hours'  + num).val();
+                //if(items == 0){
+                //    items=1;
+                //}
+                result2 = (items2 / 1);
+            return result2.toFixed(2);
+            });
+            $('#taskcpv' + num).val(function() {
+                var items2 = $('#pv'  + num).val();
+                //if(items == 0){
+                //    items=1;
+                //}
+                result2 = (items2 / 1);
+            return result2.toFixed(2);
+            });
+        }else{
+            $('#taskch' + num).val(function() {
+                var items2 = $('#hours'  + num).val();
+                //if(items == 0){
+                //    items=1;
+                //}
+                result2 = (items2 / 1) + ($('#taskch'  + (num-1)).val()/1);
+            return result2.toFixed(2);
+            });
+            $('#taskcpv' + num).val(function() {
+                var items2 = $('#pv'  + num).val();
+                //if(items == 0){
+                //    items=1;
+                //}
+                result2 = (items2 / 1) + ($('#taskcpv'  + (num-1)).val()/1);
+            return result2.toFixed(2);
+            });
+        }
+        //$('.toAdd').trigger('click');
+        //$('.toAdd').trigger('keyup');
     });
 });
-$(document).on('click', '[id^=item]', function(){
-    var num = this.id.split('item')[1];
-    $('#item' + num).keyup(function() {
-        $('#x' + num).trigger('change');
-        $('#y' + num).trigger('change');
+$(document).on('click', '[id^=hours]', function(){
+    var num = this.id.split('hours')[1];
+    $('#hours' + num).keyup(function() {
+        //$('#pv' + num).trigger('change');
+        //$('#taskch' + num).trigger('change');
+        if(num > 1){
+            $('[id^="pv"]').trigger('change');
+        }else{
+            $('#pv' + num).trigger('change');
+        }
     });
 });

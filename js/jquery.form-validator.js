@@ -1710,7 +1710,7 @@
      */
     LANG: {
       errorTitle: 'Form submission failed!',
-      requiredField: '<br><font size=2>required</font>',
+      requiredField: '<center><mark><font size=1>required</font></mark></center>',
       requiredFields: 'You have not answered all required fields',
       badTime: 'You have not given a correct time',
       badEmail: 'You have not given a correct e-mail address',
@@ -1726,7 +1726,7 @@
       badUrl: 'The input value is not a correct URL',
       badCustomVal: 'The input value is incorrect',
       andSpaces: ' and spaces ',
-      badInt: '<br><font size=2>a NUMBER is required</font>',
+      badInt: '<br><center><mark><font size=1>number required</font></mark></center>',
       badSecurityNumber: 'Your social security number was incorrect',
       badUKVatAnswer: 'Incorrect UK VAT Number',
       badUKNin: 'Incorrect UK NIN',
