@@ -106,7 +106,7 @@
 					echo '<tr bgcolor="grey" style="font-weight:bold"><td colspan="5" width="30%">Templates</td></tr>';
                     echo"<tr>";
                     echo"<td>";
-                    echo "<a href='test_report.php?user_id=$userId&project_id=$projectId'>Test Report</a>";
+                    echo "<a href='taskAndSchedule.php?user_id=$userId&project_id=$projectId'>Task & Schedule Planning Template</a>";
                     echo "</td>";
 					echo"</tr>";
                     echo"<tr>";
@@ -120,12 +120,7 @@
 					echo"</tr>";
                     echo"<tr>";
                     echo"<td>";
-                    echo "<a href='pipForm.php?user_id=$userId&project_id=$projectId'>PIP Form</a>";
-                    echo "</td>";
-					echo"</tr>";
-                    echo"<tr>";
-                    echo"<td>";
-                    echo "<a href='sizeEstimatingTemplate.php?user_id=$userId&project_id=$projectId'>Size Estimating Template</a>";
+                    echo "<a href='test_report.php?user_id=$userId&project_id=$projectId'>Test Report</a>";
                     echo "</td>";
 					echo"</tr>";
 					

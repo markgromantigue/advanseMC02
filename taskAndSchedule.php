@@ -1,3 +1,44 @@
+<!--
+@Author: Mark Genesis T. Romantigue
+email:markg.romantigue@gmail.com
+version 1.0
+-->
+<?php
+    error_reporting(0);
+	session_start();
+	if(!isset($_SESSION['myusername'])){ //if login in session is not set
+        header("Location:index.php");
+	}
+	
+	include_once 'db.php';
+	
+	if(isset($_GET['user_id'])){
+		$userId = $_GET['user_id'];
+        $projectId = $_GET['project_id'];
+	}
+    
+    $myusername = $_SESSION['myusername'];
+    $strSQL = "SELECT * FROM users as u, project as p WHERE u.user_id=p.user_id AND name = '" . $myusername . "'";
+    $rs = mysql_query($strSQL);
+    $row = mysql_fetch_array($rs);
+
+    if(isset($_GET['msg'])){
+		$msg = $_GET['msg'];
+		if ($msg ==  "success"){
+			?> <script> alert("Time log added successfully!"); </script> <?php
+		}
+		else if ($msg ==  "edit"){
+			?> <script> alert("Time log updated successfully!"); </script> <?php
+		}
+    }
+    
+    $query="SELECT * from users c, project o WHERE c.user_id = o. user_id AND o. user_id = $userId AND o. project_id = $projectId";
+    $result=mysql_query($query);
+    $row2 = mysql_fetch_array($result);
+    if($row2['TPT'] == 1){
+        header("Location:viewSizeTemplate.php?user_id=$userId&project_id=$projectId");
+    }
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,13 +57,13 @@
                         <p>Student</p>
                     </td>
                     <td style="width: 71.9665%;">
-                        <p><u>Mark Genesis T. Romantigue</u></p>
+                        <p><u><?php echo $row['name'];?></u></p>
                     </td>
                     <td style="width: 10%;">
                         <p>Date</p>
                     </td>
                     <td style="width: 10%;">
-                        <p><u>06/22/16</u></p>
+                        <p><u><?php echo $row['date'];?></u></p>
                     </td>
                 </tr>
                 <tr>
@@ -30,13 +71,13 @@
                         <p>Professor</p>
                     </td>
                     <td style="width: 71.9665%;">
-                        <p><u>Prof. Raymund Sison</u></p>
+                        <p><u><?php echo $row['professor'];?></u></p>
                     </td>
                     <td style="width: 10%;">
                         <p>Program #</p>
                     </td>
                     <td style="width: 10%;">
-                        <p><u>5A</u></p>
+                        <p><u><?php echo $row['program_no'];?></u></p>
                     </td>
                 </tr>
             </tbody>
