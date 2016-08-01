@@ -36,8 +36,8 @@ version 1.0
     $query="SELECT * from users c, project o WHERE c.user_id = o. user_id AND o. user_id = $userId AND o. project_id = $projectId";
     $result=mysql_query($query);
     $row2 = mysql_fetch_array($result);
-    if($row2['TRL'] == 1){
-        header("Location:view_time_log.php?user_id=$userId&project_id=$projectId");
+    if($row2['TRT'] == 1){
+        header("Location:view_test_report.php?user_id=$userId&project_id=$projectId");
     }
 ?>
 <html>

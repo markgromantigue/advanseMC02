@@ -18,7 +18,7 @@ else
 
     for($i = 0; $i < $nRows; $i++) {
             mysqli_query($con, "INSERT test_report (user_id, project_id, test_name_num, test_objective, test_description, test_conditions, expected_results) values ('".$userId."', '".$projectId."','".$_POST["name"][$i]."', '".$_POST["objective"][$i]."', '".$_POST["description"][$i]."', '".$_POST["conditions"][$i]."', '".$_POST["expected"][$i]."')") or die (mysqli_error());
-            //mysqli_query($con, "UPDATE `project` SET `TRL`= 1 WHERE `project_id` = '".$projectId."' AND `user_id` = '".$userId."'") or die (mysqli_error());
+            mysqli_query($con, "UPDATE `project` SET `TRT`= 1 WHERE `project_id` = '".$projectId."' AND `user_id` = '".$userId."'") or die (mysqli_error());
     }
     
     header("Location: view_project.php?msg=done&user_id=$userId&project_id=$projectId");
