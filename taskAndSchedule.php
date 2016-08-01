@@ -234,7 +234,7 @@
             font-size: 14px;'>
             <p><br /><br /></p>
             <p style="text-align: center;"><strong>SCHEDULE PLANNING TEMPLATE</strong></p>
-            <table style="width: 1044px;" border="1">
+            <table style="width: 1044px;" border="1" id="myTable2">
                 <tbody>
                     <tr>
                         <td style="width: 109px;">
@@ -277,28 +277,28 @@
                             <p style="text-align: center;">1</p>
                         </td>
                         <td style="width: 109px;">
-                            <p style="text-align: center;">1/1</p>
+                            <input type="date" step=7 min=2014-09-08 name="schedDateMonday[]" id="schedDateMonday1" data-validation="required">
                         </td>
                         <td style="width: 110px;">
-                            <p style="text-align: center;">2.0</p>
+                            <input type="text" size="11" name="plandh[]" id="plandh1" data-validation="number" data-validation-allowing="float">
                         </td>
                         <td style="width: 110px;">
-                            <p style="text-align: center;">2.0</p>
+                            <input type="text" size="11" name="schedch[]" id="schedch1" data-validation="number" data-validation-allowing="float">
                         </td>
                         <td style="width: 110px;">
-                            <p style="text-align: center;">0.8</p>
+                            <input type="text" size="11" name="schedcpv[]" id="schedcpv1" data-validation="number" data-validation-allowing="float">
                         </td>
                         <td style="width: 110px;">
-                            <p style="text-align: center;">2.0</p>
+                            <input type="text" size="11" name="actualdh[]" id="actualdh1" disabled>
                         </td>
                         <td style="width: 110px;">
-                            <p style="text-align: center;">2.0</p>
+                            <input type="text" size="11" name="actualschedch[]" id="actualschedch1" disabled>
                         </td>
                         <td style="width: 110px;">
-                            <p style="text-align: center;">0.4</p>
+                            <input type="text" size="11" name="schedcev[]" id="schedcev1" disabled>
                         </td>
                         <td style="width: 110px;">
-                            <p style="text-align: center;">0.2</p>
+                            <input type="text" size="11" name="adjustedev[]" id="adjustedev1" disabled>
                         </td>
                     </tr>
                     <tr>
@@ -306,32 +306,42 @@
                             <p style="text-align: center;">2</p>
                         </td>
                         <td style="width: 109px;">
-                            <p style="text-align: center;">1/2</p>
+                            <input type="date" step=7 min=2014-09-08 name="schedDateMonday[]" id="schedDateMonday2" data-validation="required" data-validation-depends-on="schedcpv2">
                         </td>
                         <td style="width: 110px;">
-                            <p style="text-align: center;">2.0</p>
+                            <input type="text" size="11" name="plandh[]" id="plandh2" data-validation="number" data-validation-allowing="float" data-validation-depends-on="schedDateMonday2">
                         </td>
                         <td style="width: 110px;">
-                            <p style="text-align: center;">4.0</p>
+                            <input type="text" size="11" name="schedch[]" id="schedch2" data-validation="number" data-validation-allowing="float" data-validation-depends-on="plandh2">
                         </td>
                         <td style="width: 110px;">
-                            <p style="text-align: center;">1.0</p>
+                            <input type="text" size="11" name="schedcpv[]" id="schedcpv2" data-validation="number" data-validation-allowing="float" data-validation-depends-on="schedch2">
                         </td>
                         <td style="width: 110px;">
-                            <p style="text-align: center;">3.0</p>
+                            <input type="text" size="11" name="actualdh[]" id="actualdh2" disabled>
                         </td>
                         <td style="width: 110px;">
-                            <p style="text-align: center;">5.0</p>
+                            <input type="text" size="11" name="actualschedch[]" id="actualschedch2" disabled>
                         </td>
                         <td style="width: 110px;">
-                            <p style="text-align: center;">1.0</p>
+                            <input type="text" size="11" name="schedcev[]" id="schedcev2" disabled>
                         </td>
                         <td style="width: 110px;">
-                            <p style="text-align: center;">1.0</p>
+                            <input type="text" size="11" name="adjustedev[]" id="adjustedev2" disabled>
                         </td>
                     </tr>
+                    <tr class="addMoreObjectRow"></tr>
                 </tbody>
             </table>
+            <input type="button" value="Add more week/day" onClick="addObjectRow()" border=0       style='cursor:pointer;background-color: white;
+            border: none;
+            color: black;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: underline;
+            display: inline-block;
+            font-size: 14px;'>
+            <br><br>
         <input type="submit" value="Submit" />
         </form>
         </center>
