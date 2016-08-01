@@ -21,6 +21,16 @@ version 1.0
     $strSQL = "SELECT * FROM users as u, project as p WHERE u.user_id=p.user_id AND name = '" . $myusername . "'";
     $rs = mysql_query($strSQL);
     $row = mysql_fetch_array($rs);
+    
+    $strSQL2 = "SELECT * FROM `task_planning` WHERE `user_id` = '" . $userId . "' AND `project_id` = '" . $projectId . "'";
+    $rs2 = mysql_query($strSQL2);
+    //$row2 = mysql_fetch_array($rs2);
+    
+    $strSQL3 = "SELECT * FROM `schedule_planning` WHERE `user_id` = '" . $userId . "' AND `project_id` = '" . $projectId . "'";
+    $rs3 = mysql_query($strSQL3);
+    //$row3 = mysql_fetch_array($rs3);
+    $plocCount = mysql_num_rows($rs3);
+    
 
     if(isset($_GET['msg'])){
 		$msg = $_GET['msg'];
@@ -32,14 +42,7 @@ version 1.0
 		}
     }
     
-    $query="SELECT * from users c, project o WHERE c.user_id = o. user_id AND o. user_id = $userId AND o. project_id = $projectId";
-    $result=mysql_query($query);
-    $row2 = mysql_fetch_array($result);
-    if($row2['TPT'] == 1){
-        header("Location:viewTaskAndSchedule.php?user_id=$userId&project_id=$projectId");
-    }
 ?>
-<!DOCTYPE html>
 <html>
     <head>
         <title>Task and Schedule Planning Template</title>
@@ -148,98 +151,11 @@ version 1.0
                             <p style="text-align: center;"><em>Actual&nbsp;E.V.</em></p>
                         </td>
                     </tr>
-                    <tr>
-                        <td width="87">
-                            <p style="text-align: center;">1</p>
-                        </td>
-                        <td width="87">
-                            <select name="phase[]" data-validation="required">
-                                <option value="" disabled selected>Select</option>
-                                <option value="Planning">Planning</option>
-                                <option value="Design">Design</option>
-                                <option value="Code">Code</option>
-                                <option value="Compile">Compile</option>
-                                <option value="Test">Test</option>
-                                <option value="Postmortem">Postmortem</option>
-                            </select>
-                        </td>
-                        <td width="87">
-                            <input type="text" size="8" name="hours[]" id="hours1" class="toAdd" data-validation="number" data-validation-allowing="float">
-                        </td>
-                        <td width="87">
-                            <input type="text" size="8" name="pv[]" id="pv1" data-validation="number" data-validation-allowing="float">
-                        </td>
-                        <td width="87">
-                            <input type="text" size="8" name="taskch[]" id="taskch1" data-validation="number" data-validation-allowing="float">
-                        </td>
-                        <td width="87">
-                            <input type="text" size="9" name="taskcpv[]" id="taskcpv1" data-validation="number" data-validation-allowing="float">
-                        </td>
-                        <td width="87">
-                            <input type="date" step=7 min=2014-09-08 name="taskDateMonday[]" id="taskDateMonday1" data-validation="required">
-                        </td>
-                        <td width="87">
-                            <input type="date" name="taskDate[]" id="taskDate1" disabled>
-                        </td>
-                        <td width="87">
-                            <input type="text" size="8" name="ev[]" id="ev1" disabled>
-                        </td>
-                        <td width="87">
-                            <input type="text" size="8" name="taskcev[]" id="taskcev1" disabled>
-                        </td>
-                        <td width="87">
-                            <input type="text" size="8" name="actualev[]" id="actualev1" disabled>
-                        </td>
-                        <td width="87">
-                            <input type="text" size="8" name="caev[]" id="caev1" disabled>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td width="87">
-                            <p style="text-align: center;">2</p>
-                        </td>
-                        <td width="87">
-                            <select name="phase[]" id="phase2" data-validation="required" data-validation-depends-on="caev2">
-                                <option value="" disabled selected>Select</option>
-                                <option value="Planning">Planning</option>
-                                <option value="Design">Design</option>
-                                <option value="Code">Code</option>
-                                <option value="Compile">Compile</option>
-                                <option value="Test">Test</option>
-                                <option value="Postmortem">Postmortem</option>
-                            </select>
-                        </td>
-                        <td width="87">
-                            <input type="text" size="8" name="hours[]" id="hours2" class="toAdd" data-validation="number" data-validation-allowing="float" data-validation-depends-on="phase2">
-                        </td>
-                        <td width="87">
-                            <input type="text" size="8" name="pv[]" id="pv2" data-validation="number" data-validation-allowing="float" data-validation-depends-on="hours2">
-                        </td>
-                        <td width="87">
-                            <input type="text" size="8" name="taskch[]" id="taskch2" data-validation="number" data-validation-allowing="float" data-validation-depends-on="pv2">
-                        </td>
-                        <td width="87">
-                            <input type="text" size="9" name="taskcpv[]" id="taskcpv2" data-validation="number" data-validation-allowing="float" data-validation-depends-on="taskch2">
-                        </td>
-                        <td width="87">
-                            <input type="date" step=7 min=2014-09-08 name="taskDateMonday[]" name="taskDateMonday[]" id="taskDateMonday2" data-validation="required" data-validation-depends-on="taskcpv2">
-                        </td>
-                        <td width="87">
-                            <input type="date" name="taskDate[]" id="taskDate2" disabled>
-                        </td>
-                        <td width="87">
-                            <input type="text" size="8" name="ev[]" id="ev2" disabled>
-                        </td>
-                        <td width="87">
-                            <input type="text" size="8" name="taskcev[]" id="taskcev2" disabled>
-                        </td>
-                        <td width="87">
-                            <input type="text" size="8" name="actualev[]" id="actualev2" disabled>
-                        </td>
-                        <td width="87">
-                            <input type="text" size="8" name="caev[]" id="caev2" disabled>
-                        </td>
-                    </tr>
+                    <?php
+                        while ($row2 = mysql_fetch_array($rs2)) {
+                            echo "<tr>                         <td width='87'>                             <p style='text-align: center;'>1</p>                         </td>                         <td width='87'>                             <select name='phase[]' disabled>                                 <option value='' disabled selected>" . $row2['task_name'] . "</option>                                 <option value='Planning'>Planning</option>                                 <option value='Design'>Design</option>                                 <option value='Code'>Code</option>                                 <option value='Compile'>Compile</option>                                 <option value='Test'>Test</option>                                 <option value='Postmortem'>Postmortem</option>                             </select>                         </td>                         <td width='87'>                             <input type='text' size='8' value='" . $row2['hours'] . "' name='hours[]' id='hours1' class='toAdd' disabled>                         </td>                         <td width='87'>                             <input type='text' size='8' value='" . $row2['planned_value'] . "' name='pv[]' id='pv1' disabled>                         </td>                         <td width='87'>                             <input type='text' size='8' name='taskch[]' value='" . $row2['cumulative_hours'] . "' id='taskch1' disabled>                         </td>                         <td width='87'>                             <input type='text' size='9' name='taskcpv[]' id='taskcpv1' value='" . $row2['cumulative_pv'] . "' disabled>                         </td>                         <td width='87'>                             <input type='date' step=7 min=2014-09-08 name='taskDateMonday[]' value='" . $row2['date_monday'] . "' id='taskDateMonday1' disabled>                         </td>                         <td width='87'>                             <input type='date' name='taskDate[]' id='taskDate1' disabled>                         </td>                         <td width='87'>                             <input type='text' size='8' name='ev[]' id='ev1' disabled>                         </td>                         <td width='87'>                             <input type='text' size='8' name='taskcev[]' id='taskcev1' disabled>                         </td>                         <td width='87'>                             <input type='text' size='8' name='actualev[]' id='actualev1' disabled>                         </td>                         <td width='87'>                             <input type='text' size='8' name='caev[]' id='caev1' disabled>                         </td>                     </tr>";
+                        }
+                        ?>
                     <tr class="addMore">
                         <td width="87">
                             <p>&nbsp;</p>
@@ -248,7 +164,7 @@ version 1.0
                             <p style="text-align: center;">TOTAL</p>
                         </td>
                         <td width="87">
-                            <input type="text" size="8" name="totalHours" id="totalBA" data-validation="number" data-validation-allowing="float">
+                            <input type="text" size="8" name="totalHours" id="totalBA" value="<?php echo $row2['total_hours']; ?>" disabled>
                         </td>
                         <td width="87">
                             <p style="text-align: center;">1.0</p>
@@ -313,64 +229,12 @@ version 1.0
                             <p style="text-align: center;"><em>Earned&nbsp;Value</em></p>
                         </td>
                     </tr>
-                    <tr>
-                        <td style="width: 109px;">
-                            <p style="text-align: center;">1</p>
-                        </td>
-                        <td style="width: 109px;">
-                            <input type="date" step=7 min=2014-09-08 name="schedDateMonday[]" id="schedDateMonday1" data-validation="required">
-                        </td>
-                        <td style="width: 110px;">
-                            <input type="text" size="11" name="plandh[]" id="plandh1" data-validation="number" data-validation-allowing="float">
-                        </td>
-                        <td style="width: 110px;">
-                            <input type="text" size="11" name="schedch[]" id="schedch1" data-validation="number" data-validation-allowing="float">
-                        </td>
-                        <td style="width: 110px;">
-                            <input type="text" size="11" name="schedcpv[]" id="schedcpv1" data-validation="number" data-validation-allowing="float">
-                        </td>
-                        <td style="width: 110px;">
-                            <input type="text" size="11" name="actualdh[]" id="actualdh1" disabled>
-                        </td>
-                        <td style="width: 110px;">
-                            <input type="text" size="11" name="actualschedch[]" id="actualschedch1" disabled>
-                        </td>
-                        <td style="width: 110px;">
-                            <input type="text" size="11" name="schedcev[]" id="schedcev1" disabled>
-                        </td>
-                        <td style="width: 110px;">
-                            <input type="text" size="11" name="adjustedev[]" id="adjustedev1" disabled>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="width: 109px;">
-                            <p style="text-align: center;">2</p>
-                        </td>
-                        <td style="width: 109px;">
-                            <input type="date" step=7 min=2014-09-08 name="schedDateMonday[]" id="schedDateMonday2" data-validation="required" data-validation-depends-on="schedcpv2">
-                        </td>
-                        <td style="width: 110px;">
-                            <input type="text" size="11" name="plandh[]" id="plandh2" data-validation="number" data-validation-allowing="float" data-validation-depends-on="schedDateMonday2">
-                        </td>
-                        <td style="width: 110px;">
-                            <input type="text" size="11" name="schedch[]" id="schedch2" data-validation="number" data-validation-allowing="float" data-validation-depends-on="plandh2">
-                        </td>
-                        <td style="width: 110px;">
-                            <input type="text" size="11" name="schedcpv[]" id="schedcpv2" data-validation="number" data-validation-allowing="float" data-validation-depends-on="schedch2">
-                        </td>
-                        <td style="width: 110px;">
-                            <input type="text" size="11" name="actualdh[]" id="actualdh2" disabled>
-                        </td>
-                        <td style="width: 110px;">
-                            <input type="text" size="11" name="actualschedch[]" id="actualschedch2" disabled>
-                        </td>
-                        <td style="width: 110px;">
-                            <input type="text" size="11" name="schedcev[]" id="schedcev2" disabled>
-                        </td>
-                        <td style="width: 110px;">
-                            <input type="text" size="11" name="adjustedev[]" id="adjustedev2" disabled>
-                        </td>
-                    </tr>
+                    
+                    <?php
+                        while ($row3 = mysql_fetch_array($rs3)) {
+                            echo "<tr>                         <td style='width: 109px;'>                             <p style='text-align: center;'>1</p>                         </td>                         <td style='width: 109px;'>                             <input type='date' step=7 min=2014-09-08 name='schedDateMonday[]' id='schedDateMonday1' value='" . $row3['date_monday'] . "' disabled>                         </td>                         <td style='width: 110px;'>                             <input type='text' size='11' name='plandh[]' id='plandh1' value='" . $row3['direct_hours'] . "' disabled>                         </td>                         <td style='width: 110px;'>                             <input type='text' size='11' name='schedch[]' id='schedch1' value='" . $row3['cumulative_hours'] . "' disabled>                         </td>                         <td style='width: 110px;'>                             <input type='text' size='11' name='schedcpv[]' id='schedcpv1' value='" . $row3['cumulative_pv'] . "' disabled>                         </td>                         <td style='width: 110px;'>                             <input type='text' size='11' name='actualdh[]' id='actualdh1' disabled>                         </td>                         <td style='width: 110px;'>                             <input type='text' size='11' name='actualschedch[]' id='actualschedch1' disabled>                         </td>                         <td style='width: 110px;'>                             <input type='text' size='11' name='schedcev[]' id='schedcev1' disabled>                         </td>                         <td style='width: 110px;'>                             <input type='text' size='11' name='adjustedev[]' id='adjustedev1' disabled>                         </td>                     </tr>";
+                        }
+                    ?>
                     <tr class="addMoreObjectRow"></tr>
                 </tbody>
             </table>
