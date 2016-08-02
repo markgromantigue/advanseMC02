@@ -17,7 +17,7 @@ if(isset($_GET['user_id'])){
 	$(document).ready(function(){
 		$("#addRow").on("click", function(){
 			$("#test").append(
-				'<br><div style="border: 1px solid black;" class="center"><table><tr><td>Test Name/Number:</td><td><textarea class="textarea" name ="name[]" rows="1" cols="60"></textarea></td></tr><tr><td>Test Objective:</td><td><textarea class="textarea" name ="objective[]" rows="2" cols="60"></textarea><br></td></tr><tr><td>Test Description:</td><td><textarea class="textarea" name ="description[]" rows="4" cols="60"></textarea><br></td></tr><tr><td>Test Conditions:</td><td><textarea class="textarea" name ="conditions[]" rows="4" cols="60"></textarea><br></td></tr><tr><td>Expected Results:</td><td><textarea class="textarea" name ="expected[]" rows="4" cols="60"></textarea><br></td></tr></table></div>'
+				'<br><div style="border: 1px solid black;" class="center"><table><tr><td>Test Name/Number:</td><td><textarea class="textarea" name ="name[]" rows="1" cols="60" required></textarea></td></tr><tr><td>Test Objective:</td><td><textarea class="textarea" name ="objective[]" rows="2" cols="60" required></textarea><br></td></tr><tr><td>Test Description:</td><td><textarea class="textarea" name ="description[]" rows="4" cols="60" required></textarea><br></td></tr><tr><td>Test Conditions:</td><td><textarea class="textarea" name ="conditions[]" rows="4" cols="60" required></textarea><br></td></tr><tr><td>Expected Results:</td><td><textarea class="textarea" name ="expected[]" rows="4" cols="60" required></textarea><br></td></tr></table></div>'
 				);
 		});
 	});
@@ -48,12 +48,6 @@ if(isset($_GET['msg'])){
 		if ($msg == "edit"){
 			?> <script> alert("Test case updated successfully!"); </script> <?php
 		}
-        else if($msg == "fail"){
-            ?> <script> alert("Update failed! Delta time is negative."); </script> <?php
-        }
-        else if($msg == "inc"){
-            ?> <script> alert("Some row/s not added successfully. Delta time is negative."); </script> <?php
-        }
 }
 
 $con = mysqli_connect('localhost', 'root', '1234', 'advanse_mc02');
@@ -73,7 +67,7 @@ else
     $result = mysqli_query($con, $sql);
 
     while ($row = mysqli_fetch_array($result)) {
-		echo "<br><div style='border: 1px solid black;' class='center'><table><tr><td>Test Name/Number:</td><td><textarea class='textarea' name ='name[]' rows='1' cols='60' disabled>" .$row['test_name_num']. "</textarea></td></tr><tr><td>Test Objective:</td><td><textarea class='textarea' name ='objective[]' rows='2' cols='60' disabled>" .$row['test_objective']. "</textarea><br></td></tr><tr><td>Test Description:</td><td><textarea class='textarea' name ='description[]' rows='4' cols='60' disabled>" .$row['test_description']. "</textarea><br></td><td><a href='#'><button type ='button'><strong><center>Add Actual Results</center></strong></button></a></td></tr><tr><td>Test Conditions:</td><td><textarea class='textarea' name ='conditions[]' rows='4' cols='60' disabled>" .$row['test_conditions']. "</textarea><br></td><td><a href='#'><button type='button'><strong><center>Edit Test Case</center></strong></button></a></td></tr><tr><td>Expected Results:</td><td><textarea class='textarea' name ='expected[]' rows='4' cols='60' disabled>" .$row['expected_results']. "</textarea><br></td><td><a href='view_test_report.php?test_report_id=".$row['test_report_id']."&user_id=".$userId."&project_id=".$projectId."'" ?> onclick="return confirm('Are you sure you want to delete this message?')";<?php echo "><button type='button'><strong><center>Delete Test Case</center></strong></button></a></td></tr><tr><td>Actual Results:</td><td><textarea class='textarea' name ='actual[]' rows='4' cols='60' disabled>" .$row['actual_results']. "</textarea><br></td></tr></table></div>";
+		echo "<br><div style='border: 1px solid black;' class='center'><table><tr><td>Test Name/Number:</td><td><textarea class='textarea' name ='name[]' rows='1' cols='60' disabled>" .$row['test_name_num']. "</textarea></td></tr><tr><td>Test Objective:</td><td><textarea class='textarea' name ='objective[]' rows='2' cols='60' disabled>" .$row['test_objective']. "</textarea><br></td></tr><tr><td>Test Description:</td><td><textarea class='textarea' name ='description[]' rows='4' cols='60' disabled>" .$row['test_description']. "</textarea><br></td></tr><tr><td>Test Conditions:</td><td><textarea class='textarea' name ='conditions[]' rows='4' cols='60' disabled>" .$row['test_conditions']. "</textarea><br></td><td><a href='edit_test_report.php?test_report_id=".$row['test_report_id']."&user_id=".$userId."&project_id=".$projectId."'><button type='button'><strong><center>Edit Test Case</center></strong></button></a></td></tr><tr><td>Expected Results:</td><td><textarea class='textarea' name ='expected[]' rows='4' cols='60' disabled>" .$row['expected_results']. "</textarea><br></td><td><a href='view_test_report.php?test_report_id=".$row['test_report_id']."&user_id=".$userId."&project_id=".$projectId."'" ?> onclick="return confirm('Are you sure you want to delete this message?')";<?php echo "><button type='button'><strong><center>Delete Test Case</center></strong></button></a></td></tr><tr><td>Actual Results:</td><td><textarea class='textarea' name ='actual[]' rows='4' cols='60' disabled>" .$row['actual_results']. "</textarea><br></td></tr></table></div>";
 	}
 
     ?>
