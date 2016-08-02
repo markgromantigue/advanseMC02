@@ -111,11 +111,7 @@
 					echo"</tr>";
                     echo"<tr>";
                     echo"<td>";
-					if($row2['TRL'] == 1 && $row2['ST'] == 1) {
-						echo "<a href='ppsForm.php?user_id=$userId&project_id=$projectId'>Project Plan Summary</a>";
-					} else {
-						echo "Project Plan Summary (requires completing Time Recording Log and Size Estimating Template)";
-					}
+					echo "<a href='edit_recording_log.php?user_id=$userId&project_id=$projectId'>Defect Recording Log</a>";
                     echo "</td>";
 					echo"</tr>";
                     echo"<tr>";

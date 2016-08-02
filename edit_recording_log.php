@@ -7,7 +7,7 @@ mysql_select_db("advanse_mc02") or die(mysql_error());
 <title>Edit Recording Log</title>
 </head>
 <body>
-<a href="defect_recording_log.php?user_id=<?php echo $_GET['user_id']?>&project_id=<?php echo $_GET['project_id']?>"><button>Add more defects</button></a>
+<a href="view_project.php?user_id=<?php echo $_GET['user_id']?>&project_id=<?php echo $_GET['project_id']?>"><button>Go back to main menu</button></a> <a href="defect_recording_log.php?user_id=<?php echo $_GET['user_id']?>&project_id=<?php echo $_GET['project_id']?>"><button>Add more defects</button></a><br><br>
 <div align="center">
 <?php
 $sql = "SELECT * FROM defect_recording_log WHERE user_id = '" . $_GET['user_id'] . "' AND project_id = '" . $_GET['project_id'] . "'";

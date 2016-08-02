@@ -25,6 +25,8 @@ if (!$error) {
 	}
 	echo "Defects logged!<br><br>
 	<a href=edit_recording_log.php?user_id=" . $_GET['user_id'] . "&project_id=" . $_GET['project_id'] . "><button>Go back to editing menu</button></a>";
+	$sql = "UPDATE project SET DRL = 1 WHERE project_id = " . $_GET['project_id'];
+	mysql_query($sql) or die(mysql_error());
 } else {
 	echo "<script>function goBack() {
 	window.history.back();
