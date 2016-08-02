@@ -7,15 +7,19 @@ $sql = "SELECT * FROM defect_recording_log WHERE defect_id = '" . $_GET['id'] . 
 $result = mysql_query($sql) or die(mysql_error());
 $row = mysql_fetch_array($result);
 ?>
+<script>
+function goBack() {
+	window.history.back();
+}
+</script>
 <title>Editing Defect Log</title>
 </head>
 <body>
+<button onclick="goBack()">Go back</button>
 <form action="editing_recording_log_done.php?user_id=<?php echo $_GET['user_id']?>&project_id=<?php echo $_GET['project_id']?>&id=<?php echo $_GET['id']?>" method="post">
 <div align="center">
 <table>
 <tr>
-<th>Date</th>
-<th>Number</th>
 <th>Type</th>
 <th>Inject</th>
 <th>Remove</th>
@@ -23,8 +27,6 @@ $row = mysql_fetch_array($result);
 <th>Fix Defect</th>
 </tr>
 <tr>
-<td><input type="date" name="date" value="<?php echo $row['date']?>" required></td>
-<td><input type="number" name="number" value="<?php echo $row['defect_no']?>" required></td>
 <td><select name="type">
 <option value="10" <?php if ($row['type'] == 10) {
 	echo 'selected';
@@ -58,42 +60,42 @@ $row = mysql_fetch_array($result);
 }?>>100 - Environment</option>
 </select></td>
 <td><select name="inject">
-<option value="planning" <?php if ($row['inject'] == "planning") {
+<option value="1" <?php if ($row['inject'] == 1) {
 	echo 'selected';
 }?>>Planning</option>
-<option value="designing" <?php if ($row['inject'] == "designing") {
+<option value="2" <?php if ($row['inject'] == 2) {
 	echo 'selected';
 }?>>Designing</option>
-<option value="coding" <?php if ($row['inject'] == "coding") {
+<option value="3" <?php if ($row['inject'] == 3) {
 	echo 'selected';
 }?>>Coding</option>
-<option value="compiling" <?php if ($row['inject'] == "compiling") {
+<option value="4" <?php if ($row['inject'] == 4) {
 	echo 'selected';
 }?>>Compiling</option>
-<option value="testing" <?php if ($row['inject'] == "testing") {
+<option value="5" <?php if ($row['inject'] == 5) {
 	echo 'selected';
 }?>>Testing</option>
-<option value="postmortem" <?php if ($row['inject'] == "postmortem") {
+<option value="6" <?php if ($row['inject'] == 6) {
 	echo 'selected';
 }?>>Postmortem</option>
 </select></td>
 <td><select name="remove">
-<option value="planning" <?php if ($row['remove'] == "planning") {
+<option value="1" <?php if ($row['remove'] == 1) {
 	echo 'selected';
 }?>>Planning</option>
-<option value="designing" <?php if ($row['remove'] == "designing") {
+<option value="2" <?php if ($row['remove'] == 2) {
 	echo 'selected';
 }?>>Designing</option>
-<option value="coding" <?php if ($row['remove'] == "coding") {
+<option value="3" <?php if ($row['remove'] == 3) {
 	echo 'selected';
 }?>>Coding</option>
-<option value="compiling" <?php if ($row['remove'] == "compiling") {
+<option value="4" <?php if ($row['remove'] == 4) {
 	echo 'selected';
 }?>>Compiling</option>
-<option value="testing" <?php if ($row['remove'] == "testing") {
+<option value="5" <?php if ($row['remove'] == 5) {
 	echo 'selected';
 }?>>Testing</option>
-<option value="postmortem" <?php if ($row['remove'] == "postmortem") {
+<option value="6" <?php if ($row['remove'] == 6) {
 	echo 'selected';
 }?>>Postmortem</option>
 </select></td>

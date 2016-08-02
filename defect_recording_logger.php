@@ -1,12 +1,36 @@
 <?php
+$x = 1;
 mysql_connect("localhost","root","1234") or die(mysql_error());
 mysql_select_db("advanse_mc02") or die(mysql_error());
-$n = sizeof($_POST['date']);
+$error = false;
+$n = sizeof($_POST['type']);
 for ($i = 0 ; $i < $n ; $i++) {
-	$sql = "INSERT INTO defect_recording_log(user_id,project_id,date,defect_no,type,inject,remove,fix_time,fix_defect,description) VALUES ('" . $_GET['user_id'] . "','" . $_GET['project_id'] . "','" . $_POST['date'][$i] . "','" . $_POST['number'][$i] . "','" . $_POST['type'][$i] . "','" . $_POST['inject'][$i] . "','" . $_POST['remove'][$i] . "','" . $_POST['fixtime'][$i] . "','" . $_POST['fixdefect'][$i] . "','" . $_POST['description'][$i] . "')";
-	$result = mysql_query($sql) or die(mysql_error());
+	if ($_POST['inject'][$i] > $_POST['remove'][$i]) {
+		$error = true;
+	}
+}
+if (!$error) {
+	for ($i = 0 ; $i < $n ; $i++) {
+		do {
+			$sql = "SELECT * FROM defect_recording_log WHERE user_id = " . $_GET['user_id'] . " AND project_id = " . $_GET['project_id'] . " AND defect_no = " . $x;
+			$result = mysql_query($sql) or die(mysql_error());
+			$rows = mysql_num_rows($result);
+			if ($rows > 0) {
+				$x++;
+			}
+		} while ($rows > 0);
+		$curdate = time();
+		$sql = "INSERT INTO defect_recording_log(user_id,project_id,date,defect_no,type,inject,remove,fix_time,fix_defect,description) VALUES ('" . $_GET['user_id'] . "','" . $_GET['project_id'] . "','" . date("Y-m-d",$curdate) . "','" . $x . "','" . $_POST['type'][$i] . "','" . $_POST['inject'][$i] . "','" . $_POST['remove'][$i] . "','" . $_POST['fixtime'][$i] . "','" . $_POST['fixdefect'][$i] . "','" . $_POST['description'][$i] . "')";
+		$result = mysql_query($sql) or die(mysql_error());
+	}
+	echo "Defects logged!<br><br>
+	<a href=edit_recording_log.php?user_id=" . $_GET['user_id'] . "&project_id=" . $_GET['project_id'] . "><button>Go back to editing menu</button></a>";
+} else {
+	echo "<script>function goBack() {
+	window.history.back();
+	}</script>
+	Error: Please ensure that all phases where defects are removed are later than when they were first injected!<br><br>
+	<button onclick=goBack()>Go back</button>";
 }
 mysql_close();
 ?>
-<!-- Next lines of code to be removed during integration -->
-Defects logged! Click <a href="defect_recording_log.php?user_id=<?php echo $_GET['user_id'] ?>&project_id=<?php echo $_GET['project_id'] ?>">here</a> to add more defects or <a href="edit_recording_log.php?user_id=<?php echo $_GET['user_id'] ?>&project_id=<?php echo $_GET['project_id'] ?>">here</a> to edit defects.
