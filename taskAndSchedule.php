@@ -98,9 +98,6 @@ version 1.0
                         <td colspan="3" width="87">
                             <p style="text-align: center;"><strong>Actual</strong></p>
                         </td>
-                        <td colspan="2" width="87">
-                            <p style="text-align: center;"><strong>Real Actual</strong></p>
-                        </td>
                     </tr>
                     <tr>
                         <td width="87">
@@ -138,14 +135,6 @@ version 1.0
                         <td width="87">
                             <p style="text-align: center;"><em>Cumulative</em></p>
                             <p style="text-align: center;"><em>Earned&nbsp;Value</em></p>
-                        </td>
-                        <td width="87">
-                            <p style="text-align: center;"><em>Actual</em></p>
-                            <p style="text-align: center;"><em>Earned&nbsp;Value</em></p>
-                        </td>
-                        <td width="87">
-                            <p style="text-align: center;"><em>Cumulative</em></p>
-                            <p style="text-align: center;"><em>Actual&nbsp;E.V.</em></p>
                         </td>
                     </tr>
                     <tr>
@@ -187,12 +176,6 @@ version 1.0
                         <td width="87">
                             <input type="text" size="8" name="taskcev[]" id="taskcev1" disabled>
                         </td>
-                        <td width="87">
-                            <input type="text" size="8" name="actualev[]" id="actualev1" disabled>
-                        </td>
-                        <td width="87">
-                            <input type="text" size="8" name="caev[]" id="caev1" disabled>
-                        </td>
                     </tr>
                     <tr>
                         <td width="87">
@@ -233,12 +216,6 @@ version 1.0
                         <td width="87">
                             <input type="text" size="8" name="taskcev[]" id="taskcev2" disabled>
                         </td>
-                        <td width="87">
-                            <input type="text" size="8" name="actualev[]" id="actualev2" disabled>
-                        </td>
-                        <td width="87">
-                            <input type="text" size="8" name="caev[]" id="caev2" disabled>
-                        </td>
                     </tr>
                     <tr class="addMore">
                         <td width="87">
@@ -255,12 +232,6 @@ version 1.0
                         </td>
                         <td colspan="6" width="87">
                             <p style="text-align: center;">&nbsp;&nbsp;</p>
-                        </td>
-                        <td width="87">
-                            <input type="text" size="8" name="totalactualev" id="totalactualev" disabled>
-                        </td>
-                        <td width="87">
-                            <input type="text" size="8" name="totalcaev" id="totalcaev" disabled>
                         </td>
                     </tr>
                 </tbody>
@@ -308,10 +279,6 @@ version 1.0
                             <p style="text-align: center;"><em>Cumulative</em></p>
                             <p style="text-align: center;"><em>Earned&nbsp;Value</em></p>
                         </td>
-                        <td style="width: 110px;">
-                            <p style="text-align: center;"><em>Adjusted</em></p>
-                            <p style="text-align: center;"><em>Earned&nbsp;Value</em></p>
-                        </td>
                     </tr>
                     <tr>
                         <td style="width: 109px;">
@@ -321,25 +288,22 @@ version 1.0
                             <input type="date" step=7 min=2014-09-08 name="schedDateMonday[]" id="schedDateMonday1" data-validation="required">
                         </td>
                         <td style="width: 110px;">
-                            <input type="text" size="11" name="plandh[]" id="plandh1" data-validation="number" data-validation-allowing="float">
+                            <input type="text" size="13" name="plandh[]" id="plandh1" data-validation="number" data-validation-allowing="float">
                         </td>
                         <td style="width: 110px;">
-                            <input type="text" size="11" name="schedch[]" id="schedch1" data-validation="number" data-validation-allowing="float">
+                            <input type="text" size="13" name="schedch[]" id="schedch1" data-validation="number" data-validation-allowing="float">
                         </td>
                         <td style="width: 110px;">
-                            <input type="text" size="11" name="schedcpv[]" id="schedcpv1" data-validation="number" data-validation-allowing="float">
+                            <input type="text" size="13" name="schedcpv[]" id="schedcpv1" data-validation="number" data-validation-allowing="float">
                         </td>
                         <td style="width: 110px;">
-                            <input type="text" size="11" name="actualdh[]" id="actualdh1" disabled>
+                            <input type="text" size="13" name="actualdh[]" id="actualdh1" disabled>
                         </td>
                         <td style="width: 110px;">
-                            <input type="text" size="11" name="actualschedch[]" id="actualschedch1" disabled>
+                            <input type="text" size="13" name="actualschedch[]" id="actualschedch1" disabled>
                         </td>
                         <td style="width: 110px;">
-                            <input type="text" size="11" name="schedcev[]" id="schedcev1" disabled>
-                        </td>
-                        <td style="width: 110px;">
-                            <input type="text" size="11" name="adjustedev[]" id="adjustedev1" disabled>
+                            <input type="text" size="13" name="schedcev[]" id="schedcev1" disabled>
                         </td>
                     </tr>
                     <tr>
@@ -350,25 +314,22 @@ version 1.0
                             <input type="date" step=7 min=2014-09-08 name="schedDateMonday[]" id="schedDateMonday2" data-validation="required" data-validation-depends-on="schedcpv2">
                         </td>
                         <td style="width: 110px;">
-                            <input type="text" size="11" name="plandh[]" id="plandh2" data-validation="number" data-validation-allowing="float" data-validation-depends-on="schedDateMonday2">
+                            <input type="text" size="13" name="plandh[]" id="plandh2" data-validation="number" data-validation-allowing="float" data-validation-depends-on="schedDateMonday2">
                         </td>
                         <td style="width: 110px;">
-                            <input type="text" size="11" name="schedch[]" id="schedch2" data-validation="number" data-validation-allowing="float" data-validation-depends-on="plandh2">
+                            <input type="text" size="13" name="schedch[]" id="schedch2" data-validation="number" data-validation-allowing="float" data-validation-depends-on="plandh2">
                         </td>
                         <td style="width: 110px;">
-                            <input type="text" size="11" name="schedcpv[]" id="schedcpv2" data-validation="number" data-validation-allowing="float" data-validation-depends-on="schedch2">
+                            <input type="text" size="13" name="schedcpv[]" id="schedcpv2" data-validation="number" data-validation-allowing="float" data-validation-depends-on="schedch2">
                         </td>
                         <td style="width: 110px;">
-                            <input type="text" size="11" name="actualdh[]" id="actualdh2" disabled>
+                            <input type="text" size="13" name="actualdh[]" id="actualdh2" disabled>
                         </td>
                         <td style="width: 110px;">
-                            <input type="text" size="11" name="actualschedch[]" id="actualschedch2" disabled>
+                            <input type="text" size="13" name="actualschedch[]" id="actualschedch2" disabled>
                         </td>
                         <td style="width: 110px;">
-                            <input type="text" size="11" name="schedcev[]" id="schedcev2" disabled>
-                        </td>
-                        <td style="width: 110px;">
-                            <input type="text" size="11" name="adjustedev[]" id="adjustedev2" disabled>
+                            <input type="text" size="13" name="schedcev[]" id="schedcev2" disabled>
                         </td>
                     </tr>
                     <tr class="addMoreObjectRow"></tr>
