@@ -47,6 +47,7 @@ h1 {
 table {
 	width: 100%;
 }
+
 </style>
 </head>
 
