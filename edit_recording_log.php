@@ -7,7 +7,16 @@ mysql_select_db("advanse_mc02") or die(mysql_error());
 <title>Edit Recording Log</title>
 </head>
 <body>
-<a href="view_project.php?user_id=<?php echo $_GET['user_id']?>&project_id=<?php echo $_GET['project_id']?>"><button>Go back to main menu</button></a> <a href="defect_recording_log.php?user_id=<?php echo $_GET['user_id']?>&project_id=<?php echo $_GET['project_id']?>"><button>Add more defects</button></a><br><br>
+<script>
+function confirmation(a,b,c) {
+	var x = confirm('Are you sure you want to delete this defect log?');
+	var y = "http://localhost/advanse/mco2/delete_recording_log.php?user_id=" + a + "&project_id=" + b + "&id=" + c;
+	if (x == true) {
+		window.location = y;
+	}
+}
+</script>
+<a href="view_project.php?user_id=<?php echo $_GET['user_id']?>&project_id=<?php echo $_GET['project_id']?>"><button>Go back to main menu</button></a> <a href="defect_recording_log.php?user_id=<?php echo $_GET['user_id']?>&project_id=<?php echo $_GET['project_id']?>"><button>Add more defects</button></a><br>
 <div align="center">
 <?php
 $sql = "SELECT * FROM defect_recording_log WHERE user_id = '" . $_GET['user_id'] . "' AND project_id = '" . $_GET['project_id'] . "'";
@@ -24,8 +33,8 @@ while ($row = mysql_fetch_array($result)) {
 	<th>Fix Defect</th>
 	</tr>
 	<tr>
-	<td><input type='date' value='" . $row['date'] . "' disabled></td>
-	<td><input type='number' value='" . $row['defect_no'] . "' disabled></td>";
+	<td><input type='date' value='" . $row['date'] . "' readonly></td>
+	<td><input type='number' value='" . $row['defect_no'] . "' readonly></td>";
 	if ($row['type'] == 10) {
 		echo "<td><select disabled><option selected>10 - Documentation</option>
 		<option>20 - Syntax</option>
@@ -223,14 +232,13 @@ while ($row = mysql_fetch_array($result)) {
 		<option>Testing</option>
 		<option selected>Postmortem</option></select></td>";
 	}
-	echo "<td><input type='number' value='" . $row['fix_time'] . "' disabled></td>
-	<td><input type='number' value='" . $row['fix_defect'] . "' disabled></td>
-	<td><a href='editing_recording_log.php?user_id=" . $_GET['user_id'] . "&project_id=" . $_GET['user_id'] . "&id=" . $row['defect_id'] . "'><button>Edit</button></a></td>
-	<td><a href='delete_recording_log.php?user_id=" . $_GET['user_id'] . "&project_id=" . $_GET['user_id'] . "&id=" . $row['defect_id'] . "'><button>Delete</button></a></td>
+	echo "<td><input type='number' value='" . $row['fix_time'] . "' readonly></td>
+	<td><input type='number' value='" . $row['fix_defect'] . "' readonly></td>
+	<td><a href='editing_recording_log.php?user_id=" . $_GET['user_id'] . "&project_id=" . $_GET['project_id'] . "&id=" . $row['defect_id'] . "'><button>Edit</button></a></td>;
+	<td><button onclick='confirmation(" . $_GET['user_id'] . "," . $_GET['project_id'] . "," . $row['defect_id'] . ")'>Delete</button></td>
 	</tr>
 	</table>
-	<b>Description:</b><br>
-	<textarea rows='10' cols='70' disabled>" . $row['description'] . "</textarea><br><br>";
+	<textarea rows='1' cols='150' readonly>" . $row['description'] . "</textarea><br><br>";
 }
 mysql_close();
 ?>
