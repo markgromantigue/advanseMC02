@@ -7,10 +7,10 @@ $rows = mysql_num_rows($result);
 $rs = mysql_fetch_array($result);
 $int = $rs['defect_no'] + 1;
 for ($i = $int ; $i <= $rows ; $i++) {
-	$sql = "UPDATE defect_recording_log SET defect_no = " . ($i - 1) . " WHERE defect_no = " . $i;
+	$sql = "UPDATE defect_recording_log SET defect_no = " . ($i - 1) . " WHERE defect_no = " . $i . " AND user_id = ". $_GET['user_id'] . " AND project_id = ". $_GET['project_id'];
 	$result = mysql_query($sql) or die(mysql_error());
 }
-$sql = "DELETE FROM defect_recording_log WHERE defect_id = '" . $_GET['id'] . "'";
+$sql = "DELETE FROM defect_recording_log WHERE defect_id = '" . $_GET['id'] . "' AND user_id = ". $_GET['user_id'] . " AND project_id = ". $_GET['project_id'];
 $result = mysql_query($sql) or die(mysql_error());
 mysql_close();
 ?>

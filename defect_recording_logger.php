@@ -10,6 +10,17 @@ for ($i = 0 ; $i < $n ; $i++) {
 		$error = false;
 	}
 }
+$sql = "SELECT * FROM defect_recording_log WHERE user_id = " . $_GET['user_id'] . " AND project_id = " . $_GET['project_id'];
+$result = mysql_query($sql) or die(mysql_error());
+$rows = mysql_num_rows($result);
+$t = $n + $rows;
+for ($i = 0 ; $i < $n ; $i++) {
+	if ($_POST['fixdefect'][$i] > $t || $_POST['fixdefect'][$i] == $_POST['defect_no'][$i]) {
+		$error = true;
+	} else {
+		$error = false;
+	}
+}
 if (!$error) {
 	for ($i = 0 ; $i < $n ; $i++) {
 		do {
@@ -32,7 +43,7 @@ if (!$error) {
 	echo "<script>function goBack() {
 	window.history.back();
 	}</script>
-	Error: Please ensure that all phases where defects are removed are later than when they were first injected!<br><br>
+	Error: Please ensure that all information are inputted correctly!<br><br>
 	<button onclick=goBack()>Go back</button>";
 }
 mysql_close();
