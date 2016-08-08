@@ -17,7 +17,7 @@ if(isset($_GET['user_id'])){
 	$(document).ready(function(){
 		$("#addRow").on("click", function(){
 			$("#test").append(
-				'<br><div class="center"><div style="border: 1px solid black;" class="center"><table><tr><td>Test Name/Number:</td><td><textarea class="textarea" name ="name[]" rows="1" cols="60" required></textarea></td></tr><tr><td>Test Objective:</td><td><textarea class="textarea" name ="objective[]" rows="2" cols="60" required></textarea><br></td></tr><tr><td>Test Description:</td><td><textarea class="textarea" name ="description[]" rows="4" cols="60" required></textarea><br></td></tr><tr><td>Test Conditions:</td><td><textarea class="textarea" name ="conditions[]" rows="4" cols="60" required></textarea><br></td></tr><tr><td>Expected Results:</td><td><textarea class="textarea" name ="expected[]" rows="4" cols="60" required></textarea><br></td></tr></table></div></div>'
+				'<br><div class="center"><div style="border: 1px solid black;" class="center"><table id="inputRows"><tr><td>Test Name/Number:</td><td><textarea class="textarea" name ="name[]" rows="1" cols="60" required></textarea></td></tr><tr><td>Test Objective:</td><td><textarea class="textarea" name ="objective[]" rows="2" cols="60" required></textarea><br></td></tr><tr><td>Test Description:</td><td><textarea class="textarea" name ="description[]" rows="4" cols="60" required></textarea><br></td></tr><tr><td>Test Conditions:</td><td><textarea class="textarea" name ="conditions[]" rows="4" cols="60" required></textarea><br></td></tr><tr><td>Expected Results:</td><td><textarea class="textarea" name ="expected[]" rows="4" cols="60" required></textarea><br></td></tr></table></div></div>'
 				);
 		});
 	});
@@ -31,6 +31,10 @@ if(isset($_GET['user_id'])){
 .textarea {
     resize: vertical;
 }
+#inputRows textarea {
+    width: 100% !important;
+}
+
 </style>
 </head>
 <body>
@@ -67,7 +71,7 @@ else
     $result = mysqli_query($con, $sql);
 
     while ($row = mysqli_fetch_array($result)) {
-		echo "<div class='center'><br><div style='border: 1px solid black;' class='center'><table><tr><td>Test Name/Number:</td><td><textarea class='textarea' name ='name[]' rows='1' cols='60' disabled>" .$row['test_name_num']. "</textarea></td></tr><tr><td>Test Objective:</td><td><textarea class='textarea' name ='objective[]' rows='2' cols='60' disabled>" .$row['test_objective']. "</textarea><br></td></tr><tr><td>Test Description:</td><td><textarea class='textarea' name ='description[]' rows='4' cols='60' disabled>" .$row['test_description']. "</textarea><br></td></tr><tr><td>Test Conditions:</td><td><textarea class='textarea' name ='conditions[]' rows='4' cols='60' disabled>" .$row['test_conditions']. "</textarea><br></td></tr><tr><td>Expected Results:</td><td><textarea class='textarea' name ='expected[]' rows='4' cols='60' disabled>" .$row['expected_results']. "</textarea><br></td></tr><tr><td>Actual Results:</td><td><textarea class='textarea' name ='actual[]' rows='4' cols='60' disabled>" .$row['actual_results']. "</textarea><br></td></tr><tr><td><a href='edit_test_report.php?test_report_id=".$row['test_report_id']."&user_id=".$userId."&project_id=".$projectId."'><button type='button'><strong><center>Edit Test Case</center></strong></button></a></td><td><a href='view_test_report.php?test_report_id=".$row['test_report_id']."&user_id=".$userId."&project_id=".$projectId."'" ?> onclick="return confirm('Are you sure you want to delete this message?')";<?php echo "><button type='button'><strong><center>Delete Test Case</center></strong></button></a></td></tr></tr></table></div></div>";
+		echo "<div class='center'><br><div style='border: 1px solid black;' class='center'><table id='inputRows'><tr><td>Test Name/Number:</td><td><textarea class='textarea' name ='name[]' rows='1' cols='60' disabled>" .$row['test_name_num']. "</textarea></td></tr><tr><td>Test Objective:</td><td><textarea class='textarea' name ='objective[]' rows='2' cols='60' disabled>" .$row['test_objective']. "</textarea><br></td></tr><tr><td>Test Description:</td><td><textarea class='textarea' name ='description[]' rows='4' cols='60' disabled>" .$row['test_description']. "</textarea><br></td></tr><tr><td>Test Conditions:</td><td><textarea class='textarea' name ='conditions[]' rows='4' cols='60' disabled>" .$row['test_conditions']. "</textarea><br></td></tr><tr><td>Expected Results:</td><td><textarea class='textarea' name ='expected[]' rows='4' cols='60' disabled>" .$row['expected_results']. "</textarea><br></td></tr><tr><td>Actual Results:</td><td><textarea class='textarea' name ='actual[]' rows='4' cols='60' disabled>" .$row['actual_results']. "</textarea><br></td></tr><tr><td><a href='edit_test_report.php?test_report_id=".$row['test_report_id']."&user_id=".$userId."&project_id=".$projectId."'><button type='button'><strong><center>Edit Test Case</center></strong></button></a></td><td><a href='view_test_report.php?test_report_id=".$row['test_report_id']."&user_id=".$userId."&project_id=".$projectId."'" ?> onclick="return confirm('Are you sure you want to delete this message?')";<?php echo "><button type='button'><strong><center>Delete Test Case</center></strong></button></a></td></tr></tr></table></div></div>";
 	}
 
     ?>

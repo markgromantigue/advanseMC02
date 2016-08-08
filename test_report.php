@@ -48,7 +48,7 @@ version 1.0
 	$(document).ready(function(){
 		$("#addRow").on("click", function(){
 			$("#test").append(
-				'<br><div style="border: 1px solid black;" class="center"><table><tr><td>Test Name/Number:</td><td><textarea class="textarea" name ="name[]" rows="1" cols="60"></textarea></td></tr><tr><td>Test Objective:</td><td><textarea class="textarea" name ="objective[]" rows="2" cols="60"></textarea><br></td></tr><tr><td>Test Description:</td><td><textarea class="textarea" name ="description[]" rows="4" cols="60"></textarea><br></td></tr><tr><td>Test Conditions:</td><td><textarea class="textarea" name ="conditions[]" rows="4" cols="60"></textarea><br></td></tr><tr><td>Expected Results:</td><td><textarea class="textarea" name ="expected[]" rows="4" cols="60"></textarea><br></td></tr></table></div>'
+				'<br><div style="border: 1px solid black;" class="center"><table id="inputRows"><tr><td>Test Name/Number:</td><td><textarea class="textarea" name ="name[]" rows="1" cols="60"></textarea></td></tr><tr><td>Test Objective:</td><td><textarea class="textarea" name ="objective[]" rows="2" cols="60"></textarea><br></td></tr><tr><td>Test Description:</td><td><textarea class="textarea" name ="description[]" rows="4" cols="60"></textarea><br></td></tr><tr><td>Test Conditions:</td><td><textarea class="textarea" name ="conditions[]" rows="4" cols="60"></textarea><br></td></tr><tr><td>Expected Results:</td><td><textarea class="textarea" name ="expected[]" rows="4" cols="60"></textarea><br></td></tr></table></div>'
 				);
 		});
 	});
@@ -72,6 +72,10 @@ h1 {
 table {
 	width: 100%;
 }
+#inputRows textarea {
+    width: 100% !important;
+}
+
 </style>
 </head>
 

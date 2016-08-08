@@ -36,6 +36,7 @@ else
 <head>
 
 <style type="text/css">
+
 .center {
     margin: auto;
     width: 70%;
@@ -46,6 +47,10 @@ h1 {
 }
 table {
 	width: 100%;
+}
+
+#inputRows textarea {
+    width: 100% !important;
 }
 
 </style>
